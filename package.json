@@ -1,0 +1,70 @@
+{
+  "name": "@4lch4/passgen",
+  "description": "A small CLI utility for generating phrases to be used as passwords.",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif-dev readme && git add README.md",
+    "pretty:project": "prettier --write .",
+    "pretty:code": "prettier --write **/*.js",
+    "cleanup": "npm run pretty:project; rm -rf node_modules package-lock.json pnpm-lock.yaml",
+    "coverage": "nyc mocha",
+    "coverage:watch": "nodemon --exec \"npm run coverage\""
+  },
+  "dependencies": {
+    "@oclif/command": "^1.8.0",
+    "@oclif/config": "^1.17.0",
+    "@oclif/plugin-help": "^3.2.1",
+    "bunyan": "^1.8.15",
+    "tslib": "^2.1.0"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.26.0",
+    "@oclif/test": "^1.2.8",
+    "@types/bunyan": "^1.8.6",
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.2.0",
+    "@types/node": "^14.14.22",
+    "chai": "^4.2.0",
+    "growl": "^1.10.5",
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "author": {
+    "name": "4lch4",
+    "email": "npm@4lch4.dev",
+    "url": "https://4lch4.dev"
+  },
+  "bin": {
+    "passgen": "./bin/run"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib"
+  ],
+  "homepage": "https://github.com/4lch4/PassGen",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "oclif": {
+    "bin": "passgen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/4lch4/PassGen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/4lch4/PassGen/issues",
+    "email": "passgen-bugs@4lch4.dev"
+  },
+  "types": "lib/index.d.ts"
+}
