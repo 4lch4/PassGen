@@ -1,7 +1,7 @@
 import { Command, flags } from '@oclif/command'
 
 class Passgen extends Command {
-  static description = 'describe the command here'
+  static description = 'Generates a complex yet easy to remember password using phrases instead of random text.'
 
   static flags = {
     // add --version flag to show CLI version
