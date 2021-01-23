@@ -1,24 +1,30 @@
-import { Command, flags } from '@oclif/command'
+import { Command } from '@oclif/command'
+import { cleanWord, getFlags, getStrings } from './lib'
 
 class Passgen extends Command {
-  static description = 'Generates a complex yet easy to remember password using phrases instead of random text.'
+  static description =
+    'Generates a complex yet easy to remember password using phrases instead of random text.'
 
-  static flags = {
-    // add --version flag to show CLI version
-    version: flags.version({ char: 'v' }),
-    help: flags.help({ char: 'h' }),
-    // flag with a value (-n, --name=VALUE)
-    count: flags.string({
-      char: 'c',
-      description: 'The amount of words to include in the passphrase.'
-    })
-  }
-
-  static args = [{ name: 'file' }]
+  static flags = getFlags()
 
   async run() {
-    const { args, flags } = this.parse(Passgen)
-    console.log(`count = ${flags.count}`)
+    const { flags } = this.parse(Passgen)
+    const phrasesOut = []
+
+    for (let x = 0; x < flags.phrases; x++) {
+      const phraseArray = getStrings(flags.words)
+      const finalPhrase = []
+
+      for (let phrase of phraseArray) {
+        if (phrase.includes(' ')) {
+          phrase.split(' ').forEach(word => finalPhrase.push(cleanWord(word)))
+        } else finalPhrase.push(cleanWord(phrase))
+      }
+
+      phrasesOut.push(finalPhrase.join(''))
+    }
+
+    console.log(phrasesOut.join('\n'))
   }
 }
 
